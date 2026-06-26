@@ -22,47 +22,47 @@ export default function Dashboard() {
     return (
         <div>
             <h1 className="text-3xl font-bold mb-8 flex items-center gap-3">
-                <LayoutDashboard className="text-blue-500" />
+                <LayoutDashboard className="text-primary-blue" />
                 Cluster Overview
             </h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div className="glass-panel p-6 rounded-xl border-l-4 border-blue-500">
-                    <h3 className="text-slate-400 font-medium mb-1 flex items-center gap-2">
+                <div className="card-panel p-6 border-l-4 border-primary-blue">
+                    <h3 className="text-text-secondary font-medium mb-1 flex items-center gap-2">
                         <Server size={16} /> Total Pods
                     </h3>
                     <div className="text-4xl font-bold">{metrics.total_pods}</div>
                 </div>
-                <div className="glass-panel p-6 rounded-xl border-l-4 border-emerald-500">
-                    <h3 className="text-slate-400 font-medium mb-1 flex items-center gap-2">
+                <div className="card-panel p-6 border-l-4 border-success-green">
+                    <h3 className="text-text-secondary font-medium mb-1 flex items-center gap-2">
                         <CheckCircle size={16} /> Running Pods
                     </h3>
-                    <div className="text-4xl font-bold text-emerald-400">{metrics.running_pods}</div>
+                    <div className="text-4xl font-bold text-success-green">{metrics.running_pods}</div>
                 </div>
-                <div className="glass-panel p-6 rounded-xl border-l-4 border-red-500">
-                    <h3 className="text-slate-400 font-medium mb-1 flex items-center gap-2">
+                <div className="card-panel p-6 border-l-4 border-danger-red">
+                    <h3 className="text-text-secondary font-medium mb-1 flex items-center gap-2">
                         <XCircle size={16} /> Failed Pods
                     </h3>
-                    <div className="text-4xl font-bold text-red-400">{metrics.failed_pods}</div>
+                    <div className="text-4xl font-bold text-danger-red">{metrics.failed_pods}</div>
                 </div>
-                <div className="glass-panel p-6 rounded-xl border-l-4 border-amber-500">
-                    <h3 className="text-slate-400 font-medium mb-1 flex items-center gap-2">
+                <div className="card-panel p-6 border-l-4 border-warning-yellow">
+                    <h3 className="text-text-secondary font-medium mb-1 flex items-center gap-2">
                         <AlertTriangle size={16} /> Open Incidents
                     </h3>
-                    <div className="text-4xl font-bold text-amber-400">{metrics.open_incidents}</div>
+                    <div className="text-4xl font-bold text-warning-yellow">{metrics.open_incidents}</div>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div className="glass-panel p-6 rounded-xl">
+                <div className="card-panel p-6">
                     <h2 className="text-xl font-bold mb-4">API Health</h2>
                     <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                            <CheckCircle className="text-emerald-500 w-8 h-8" />
+                        <div className="w-16 h-16 rounded-full bg-success-green/20 flex items-center justify-center">
+                            <CheckCircle className="text-success-green w-8 h-8" />
                         </div>
                         <div>
-                            <div className="text-lg font-medium">All Systems Operational</div>
-                            <div className="text-slate-400 text-sm">Updated just now</div>
+                            <div className="text-lg font-medium text-text-primary">All Systems Operational</div>
+                            <div className="text-text-secondary text-sm">Updated just now</div>
                         </div>
                     </div>
                 </div>

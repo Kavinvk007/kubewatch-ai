@@ -11,14 +11,14 @@ export default function Sidebar() {
 
     const navClass = ({ isActive }) => 
         `flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-            isActive ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+            isActive ? 'bg-primary-blue text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white'
         }`;
 
     return (
-        <div className="w-64 h-screen bg-slate-900 border-r border-slate-800 flex flex-col fixed left-0 top-0">
+        <div className="w-64 h-screen bg-bg-sidebar border-r border-slate-800 flex flex-col fixed left-0 top-0">
             <div className="p-6">
-                <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400 flex items-center gap-2">
-                    <Activity className="text-blue-500" />
+                <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+                    <Activity className="text-primary-blue" />
                     KubeWatch AI
                 </h1>
             </div>
@@ -44,7 +44,7 @@ export default function Sidebar() {
             <div className="p-4 border-t border-slate-800">
                 <button 
                     onClick={handleLogout}
-                    className="flex items-center gap-3 px-4 py-3 w-full text-left text-red-400 hover:bg-slate-800 hover:text-red-300 rounded-lg transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 w-full text-left text-danger-red hover:bg-slate-800 hover:opacity-80 rounded-lg transition-colors"
                 >
                     <LogOut size={20} /> Logout
                 </button>

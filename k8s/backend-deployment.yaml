@@ -19,8 +19,8 @@ spec:
     spec:
       containers:
       - name: backend
-        image: yourusername/kubewatch-backend:latest
-        imagePullPolicy: IfNotPresent
+        image: kubewatch-backend:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 8000
         envFrom:

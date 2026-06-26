@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: grafana-service
+  name: grafana
   namespace: kubewatch
 spec:
   selector:

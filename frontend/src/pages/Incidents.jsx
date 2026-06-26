@@ -46,36 +46,36 @@ export default function Incidents() {
     return (
         <div>
             <div className="flex justify-between items-center mb-8">
-                <h1 className="text-3xl font-bold flex items-center gap-3">
-                    <AlertTriangle className="text-amber-500" />
+                <h1 className="text-3xl font-bold flex items-center gap-3 text-text-primary">
+                    <AlertTriangle className="text-warning-yellow" />
                     Incidents
                 </h1>
                 <button 
                     onClick={() => setShowNew(!showNew)}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
+                    className="bg-primary-blue hover:opacity-90 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
                 >
                     <Plus size={20} /> New Incident
                 </button>
             </div>
 
             {showNew && (
-                <div className="glass-panel p-6 rounded-xl mb-8">
-                    <h2 className="text-xl font-bold mb-4">Report New Incident</h2>
+                <div className="card-panel p-6 mb-8">
+                    <h2 className="text-xl font-bold mb-4 text-text-primary">Report New Incident</h2>
                     <form onSubmit={handleCreate} className="space-y-4">
                         <div>
-                            <label className="block text-sm font-medium text-slate-300 mb-1">Title</label>
+                            <label className="block text-sm font-medium text-text-secondary mb-1">Title</label>
                             <input 
                                 type="text" 
-                                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500"
+                                className="w-full bg-white border border-border-color rounded-lg px-4 py-2 text-text-primary focus:outline-none focus:border-primary-blue"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                                 required
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-slate-300 mb-1">Description</label>
+                            <label className="block text-sm font-medium text-text-secondary mb-1">Description</label>
                             <textarea 
-                                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500 h-24"
+                                className="w-full bg-white border border-border-color rounded-lg px-4 py-2 text-text-primary focus:outline-none focus:border-primary-blue h-24"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 required
@@ -85,13 +85,13 @@ export default function Incidents() {
                             <button 
                                 type="button" 
                                 onClick={() => setShowNew(false)}
-                                className="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700"
+                                className="px-4 py-2 rounded-lg bg-slate-100 text-text-secondary hover:bg-slate-200"
                             >
                                 Cancel
                             </button>
                             <button 
                                 type="submit" 
-                                className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
+                                className="px-4 py-2 rounded-lg bg-primary-blue text-white hover:opacity-90"
                             >
                                 Submit
                             </button>
@@ -102,15 +102,15 @@ export default function Incidents() {
 
             <div className="space-y-4">
                 {incidents.map((inc) => (
-                    <div key={inc.id} className="glass-panel p-6 rounded-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-l-4" style={{borderLeftColor: inc.status === 'Open' ? '#f59e0b' : '#10b981'}}>
+                    <div key={inc.id} className="card-panel p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-l-4" style={{borderLeftColor: inc.status === 'Open' ? 'var(--warning-yellow)' : 'var(--success-green)'}}>
                         <div>
                             <div className="flex items-center gap-3 mb-2">
-                                <h3 className="text-lg font-bold text-white">{inc.title}</h3>
-                                <span className={`px-2 py-1 rounded text-xs font-bold ${inc.status === 'Open' ? 'bg-amber-500/20 text-amber-400' : 'bg-emerald-500/20 text-emerald-400'}`}>
+                                <h3 className="text-lg font-bold text-text-primary">{inc.title}</h3>
+                                <span className={`px-2 py-1 rounded text-xs font-bold ${inc.status === 'Open' ? 'bg-warning-yellow/10 text-warning-yellow' : 'bg-success-green/10 text-success-green'}`}>
                                     {inc.status}
                                 </span>
                             </div>
-                            <p className="text-slate-400">{inc.description}</p>
+                            <p className="text-text-secondary">{inc.description}</p>
                             <div className="text-xs text-slate-500 mt-2">
                                 Reported: {new Date(inc.created_at).toLocaleString()}
                             </div>
@@ -118,7 +118,7 @@ export default function Incidents() {
                         {inc.status === 'Open' && (
                             <button 
                                 onClick={() => handleResolve(inc.id)}
-                                className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg transition-colors whitespace-nowrap"
+                                className="bg-success-green hover:opacity-90 text-white px-4 py-2 rounded-lg transition-colors whitespace-nowrap"
                             >
                                 Mark Resolved
                             </button>
@@ -126,7 +126,7 @@ export default function Incidents() {
                     </div>
                 ))}
                 {incidents.length === 0 && (
-                    <div className="p-8 text-center text-slate-400 glass-panel rounded-xl">No incidents reported.</div>
+                    <div className="p-8 text-center text-text-secondary card-panel">No incidents reported.</div>
                 )}
             </div>
         </div>

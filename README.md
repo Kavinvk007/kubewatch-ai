@@ -59,12 +59,22 @@ GEMINI_API_KEY=your_google_gemini_api_key
 ### 2. Run with Docker Compose
 To run the full stack locally without Kubernetes:
 ```bash
-docker-compose up --build
+docker compose up --build -d
+docker compose ps
 ```
 - Frontend: http://localhost:80
 - Backend API: http://localhost:8000/docs
 - Prometheus: http://localhost:9090
-- Grafana: http://localhost:3000
+- Grafana: http://localhost:3001
+  - Username: `admin`
+  - Password: `admin`
+  - Dashboard: http://localhost:3001/dashboards
+
+> **Note:** If the dashboard does not appear, restart Docker Compose:
+> ```bash
+> docker compose down
+> docker compose up --build -d
+> ```
 
 ### 3. Run Manually (Development)
 **Backend**:
@@ -83,19 +93,41 @@ npm install
 npm run dev
 ```
 
-## ☸️ Kubernetes Setup Commands
-Make sure you have a local cluster running (e.g., `minikube start`).
+## ☸️ Windows Kubernetes Monitoring Setup
 
-```bash
-# 1. Create namespace
-kubectl apply -f k8s/namespace.yaml
-
-# 2. Add your secret (edit secret.yaml first with your base64 encoded API key)
-kubectl apply -f k8s/secret.yaml
-
-# 3. Apply all manifests
-kubectl apply -f k8s/
+Step 1: Install tools:
+```powershell
+winget install -e --id Kubernetes.kubectl
+winget install -e --id Kubernetes.minikube
 ```
+
+Step 2: Close PowerShell and open a new PowerShell.
+
+Step 3: Verify:
+```powershell
+kubectl version --client
+minikube version
+docker --version
+```
+
+Step 4: Start Docker Desktop.
+
+Step 5: Run:
+```powershell
+.\scripts\setup-kubernetes-windows.ps1
+.\scripts\run-kubernetes-monitoring.ps1
+```
+
+Step 6: Open two separate PowerShell terminals:
+```powershell
+.\scripts\port-forward-grafana.ps1
+.\scripts\port-forward-prometheus.ps1
+```
+
+Step 7: Open:
+- Grafana: http://localhost:3001
+- Prometheus: http://localhost:9090
+- Prometheus Targets: http://localhost:9090/targets
 
 ## 🔄 CI/CD Setup Guide
 1. Push this repository to GitHub.

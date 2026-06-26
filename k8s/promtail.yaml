@@ -1,0 +1,20 @@
+# Simplified promtail config for demo purposes
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: promtail
+  namespace: kubewatch
+spec:
+  selector:
+    matchLabels:
+      name: promtail
+  template:
+    metadata:
+      labels:
+        name: promtail
+    spec:
+      containers:
+      - name: promtail
+        image: grafana/promtail:latest
+        args:
+        - -client.url=http://loki-service:3100/loki/api/v1/push

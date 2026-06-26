@@ -93,6 +93,46 @@ npm install
 npm run dev
 ```
 
+## 🌍 Live Deployment Guide
+
+KubeWatch AI can be deployed live for production using Render (Backend) and Vercel (Frontend).
+
+### Live Demo URLs
+- **Frontend**: [Replace with Vercel URL]
+- **Backend API Docs**: [Replace with Render URL]/docs
+
+*(Grafana and Prometheus monitoring are kept local via Docker Compose for demo purposes.)*
+
+### 1. Backend Deployment (Render)
+Deploy the FastAPI backend using Render's Web Service:
+1. Connect your GitHub repository to Render.
+2. Create a new **Web Service**.
+3. Settings:
+   - **Root Directory**: `backend`
+   - **Environment**: `Python 3`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+4. **Environment Variables**:
+   - `GEMINI_API_KEY`: Your Google Gemini API Key
+   - `FRONTEND_URL`: `https://your-frontend-project.vercel.app` (required for CORS)
+
+### 2. Frontend Deployment (Vercel)
+Deploy the React Vite frontend using Vercel:
+1. Connect your GitHub repository to Vercel.
+2. Import the project and set the **Framework Preset** to `Vite`.
+3. Set the **Root Directory** to `frontend`.
+4. **Environment Variables**:
+   - `VITE_API_URL`: `https://your-backend-project.onrender.com/api`
+5. Click **Deploy**.
+
+### 3. Local Monitoring (Grafana & Prometheus)
+To run the monitoring stack locally while developing:
+```bash
+docker compose up --build -d
+docker compose ps
+```
+Grafana will be at `http://localhost:3001` and Prometheus at `http://localhost:9090`.
+
 ## ☸️ Windows Kubernetes Monitoring Setup
 
 Step 1: Install tools:

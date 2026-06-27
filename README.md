@@ -110,8 +110,8 @@ Deploy the FastAPI backend using Render's Web Service:
 3. Settings:
    - **Root Directory**: `backend`
    - **Environment**: `Python 3`
-   - **Build Command**: `pip install -r requirements.txt`
-   - **Start Command**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+   - **Build Command**: `cd backend && python -m pip install --upgrade pip setuptools wheel && pip install -r requirements.txt`
+   - **Start Command**: `cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 4. **Environment Variables**:
    - `GEMINI_API_KEY`: Your Google Gemini API Key
    - `FRONTEND_URL`: `https://your-frontend-project.vercel.app` (required for CORS)

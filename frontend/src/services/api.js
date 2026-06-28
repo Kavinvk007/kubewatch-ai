@@ -22,7 +22,7 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (import.meta.env.DEV && error.config) {
+        if (error.config) {
             const failedUrl = `${error.config.baseURL || ''}${error.config.url || ''}`;
             const status = error.response ? error.response.status : 'Network Error';
             console.error(`[API Error] ${status} at ${failedUrl}`, error.response?.data || error.message);

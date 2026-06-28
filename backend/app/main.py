@@ -20,12 +20,20 @@ origins = [
     "http://localhost:5173",
     "http://localhost:3000",
 ]
+
+# Read single frontend URL
 if os.getenv("FRONTEND_URL"):
     origins.append(os.getenv("FRONTEND_URL"))
+
+# Read multiple frontend URLs
+frontend_urls = os.getenv("FRONTEND_URLS")
+if frontend_urls:
+    origins.extend([url.strip() for url in frontend_urls.split(",") if url.strip()])
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

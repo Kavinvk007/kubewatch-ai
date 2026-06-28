@@ -19,7 +19,12 @@ export default function Register() {
                 console.log("Registration error:", err);
             }
             if (!err.response) {
-                setError('Backend server not reachable.');
+                const failedUrl = err.config ? `${err.config.baseURL || ''}${err.config.url || ''}` : '';
+                if (import.meta.env.DEV && failedUrl) {
+                    setError(`Backend server not reachable at ${failedUrl}`);
+                } else {
+                    setError('Backend server not reachable. Please check your connection.');
+                }
             } else {
                 let errorDetail = err.response.data?.detail;
                 if (Array.isArray(errorDetail)) {

@@ -69,6 +69,8 @@ app.include_router(dashboard_routes.router, prefix="/api/dashboard", tags=["dash
 app.include_router(incident_routes.router, prefix="/api/incidents", tags=["incidents"])
 app.include_router(ai_routes.router, prefix="/api/ai", tags=["ai"])
 
+@app.get("/")
+@app.get("/health")
 @app.get("/api/health")
 def health_check():
-    return {"status": "ok"}
+    return {"status": "ok", "service": "KubeWatch AI Backend"}

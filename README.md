@@ -108,7 +108,7 @@ Deploy the FastAPI backend using Render's Web Service:
 1. Connect your GitHub repository to Render.
 2. Create a new **Web Service**.
 3. Settings:
-   - **Root Directory**: `backend`
+   - **Root Directory**: ` ` (leave empty)
    - **Environment**: `Python 3`
    - **Build Command**: `cd backend && python -m pip install --upgrade pip setuptools wheel && pip install -r requirements.txt`
    - **Start Command**: `cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT`

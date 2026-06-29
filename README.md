@@ -10,31 +10,31 @@ KubeWatch AI is a production-ready CI/CD enabled Kubernetes Monitoring and AI Lo
 - **Full CI/CD Pipeline**: GitHub actions for testing, building, pushing, and deploying to Kubernetes.
 - **Secure Authentication**: JWT-based login for admin operations.
 
-## 📸 Screenshots
+## Screenshots
 
-1. **Login / Register Page**  
+### 1. Login / Register Page
 ![Login / Register Page](screenshots/01-login.png)
 
-2. **Cluster Overview Dashboard**  
+### 2. Cluster Overview Dashboard
 ![Cluster Overview Dashboard](screenshots/02-dashboard.png)
 
-3. **Deployments Page**  
+### 3. Deployments Page
 ![Deployments Page](screenshots/03-deployments.png)
 
-4. **AI Log Analyzer**  
-![AI Log Analyzer](screenshots/04-ai-analyzer.png)
+### 4. AI Log Analyzer
+![AI Log Analyzer](screenshots/04-ai-log-analyzer.png)
 
-5. **Monitoring Links**  
+### 5. Monitoring Links
 ![Monitoring Links](screenshots/05-monitoring.png)
 
-6. **Grafana Dashboard**  
-![Grafana Dashboard](screenshots/06-grafana.png)
+### 6. Grafana Dashboard
+![Grafana Dashboard](screenshots/06-grafana-dashboard.png)
 
-7. **Prometheus Targets**  
-![Prometheus Targets](screenshots/07-prometheus.png)
+### 7. Prometheus Targets
+![Prometheus Targets](screenshots/07-prometheus-targets.png)
 
-8. **Docker Compose Running Containers**  
-![Docker Compose Running Containers](screenshots/08-docker.png)
+### 8. Docker Compose Running Containers
+![Docker Compose Running Containers](screenshots/08-docker-compose.png)
 
 ## 🏗️ Architecture
 

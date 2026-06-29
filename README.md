@@ -10,6 +10,32 @@ KubeWatch AI is a production-ready CI/CD enabled Kubernetes Monitoring and AI Lo
 - **Full CI/CD Pipeline**: GitHub actions for testing, building, pushing, and deploying to Kubernetes.
 - **Secure Authentication**: JWT-based login for admin operations.
 
+## 📸 Screenshots
+
+1. **Login / Register Page**  
+![Login / Register Page](screenshots/01-login.png)
+
+2. **Cluster Overview Dashboard**  
+![Cluster Overview Dashboard](screenshots/02-dashboard.png)
+
+3. **Deployments Page**  
+![Deployments Page](screenshots/03-deployments.png)
+
+4. **AI Log Analyzer**  
+![AI Log Analyzer](screenshots/04-ai-analyzer.png)
+
+5. **Monitoring Links**  
+![Monitoring Links](screenshots/05-monitoring.png)
+
+6. **Grafana Dashboard**  
+![Grafana Dashboard](screenshots/06-grafana.png)
+
+7. **Prometheus Targets**  
+![Prometheus Targets](screenshots/07-prometheus.png)
+
+8. **Docker Compose Running Containers**  
+![Docker Compose Running Containers](screenshots/08-docker.png)
+
 ## 🏗️ Architecture
 
 ```mermaid
@@ -98,10 +124,11 @@ npm run dev
 KubeWatch AI can be deployed live for production using Render (Backend) and Vercel (Frontend).
 
 ### Live Demo URLs
-- **Frontend**: [Replace with Vercel URL]
-- **Backend API Docs**: [Replace with Render URL]/docs
+- **Frontend Live Demo**: https://kubewatch-ai-5rxo.vercel.app
+- **Backend API Docs**: https://kubewatch-ai-1.onrender.com/docs
+- **GitHub Repository**: https://github.com/Kavinvk007/kubewatch-ai
 
-*(Grafana and Prometheus monitoring are kept local via Docker Compose for demo purposes.)*
+*Note: Grafana and Prometheus are available locally through Docker Compose.*
 
 ### 1. Backend Deployment (Render)
 Deploy the FastAPI backend using Render's Web Service:

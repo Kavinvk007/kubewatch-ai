@@ -13,28 +13,28 @@ KubeWatch AI is a production-ready CI/CD enabled Kubernetes Monitoring and AI Lo
 ## Screenshots
 
 ### 1. Login / Register Page
-![Login / Register Page](screenshots/01-login.png)
+![Login / Register Page](screenshots/login.png)
 
 ### 2. Cluster Overview Dashboard
-![Cluster Overview Dashboard](screenshots/02-dashboard.png)
+![Cluster Overview Dashboard](screenshots/dashboard.png)
 
 ### 3. Deployments Page
-![Deployments Page](screenshots/03-deployments.png)
+![Deployments Page](screenshots/deployments.png)
 
 ### 4. AI Log Analyzer
-![AI Log Analyzer](screenshots/04-ai-log-analyzer.png)
+![AI Log Analyzer](screenshots/ai-log-analyzer.png)
 
 ### 5. Monitoring Links
-![Monitoring Links](screenshots/05-monitoring.png)
+![Monitoring Links](screenshots/monitoring.png)
 
 ### 6. Grafana Dashboard
-![Grafana Dashboard](screenshots/06-grafana-dashboard.png)
+![Grafana Dashboard](screenshots/grafana-dashboard.png)
 
 ### 7. Prometheus Targets
-![Prometheus Targets](screenshots/07-prometheus-targets.png)
+![Prometheus Targets](screenshots/prometheus-targets.png)
 
 ### 8. Docker Compose Running Containers
-![Docker Compose Running Containers](screenshots/08-docker-compose.png)
+![Docker Compose Running Containers](screenshots/docker-compose.png)
 
 ## 🏗️ Architecture
 

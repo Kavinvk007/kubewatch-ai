@@ -1,210 +1,515 @@
 # KubeWatch AI
 
-KubeWatch AI is a production-ready CI/CD enabled Kubernetes Monitoring and AI Log Intelligence Platform.
+KubeWatch AI is a DevOps monitoring and AI log intelligence platform built with React, FastAPI, Docker, Prometheus, Grafana, Kubernetes manifests, GitHub Actions, and Gemini AI.
 
-## 🚀 Features
-- **AI Log Analyzer**: Paste Kubernetes error logs and get Gemini AI-powered explanations, root causes, and suggested fixes.
-- **Real-time Dashboard**: Overview of pods, deployments, API health, and recent incidents.
-- **Monitoring Stack**: Integrated Prometheus for metrics and Grafana for beautiful visualizations.
-- **Log Aggregation**: Loki + Promtail for comprehensive cluster logging.
-- **Full CI/CD Pipeline**: GitHub actions for testing, building, pushing, and deploying to Kubernetes.
-- **Secure Authentication**: JWT-based login for admin operations.
+The platform helps users monitor deployments, track incidents, analyze Kubernetes logs, and understand deployment failures using AI-generated root-cause analysis.
+
+## Live Demo
+
+Frontend Live Demo: https://kubewatch-ai-5rxo.vercel.app
+
+Backend API Docs: https://kubewatch-ai-1.onrender.com/docs
+
+GitHub Repository: https://github.com/Kavinvk007/kubewatch-ai
+
+Note: Grafana and Prometheus are configured for local Docker Compose monitoring. They are intended for admin/developer observability, not regular application users.
+
+## Features
+
+* AI-powered Kubernetes log analysis using Gemini AI
+* JWT-based authentication for secure access
+* Cluster overview dashboard with pod, deployment, and incident status
+* Deployment status tracking
+* Incident creation and management
+* AI-generated root cause, severity, suggested fix, and prevention tip
+* Prometheus metrics integration
+* Grafana dashboard provisioning
+* Docker Compose setup for local full-stack monitoring
+* Kubernetes manifests for deployment readiness
+* GitHub Actions CI/CD workflow structure
+* Frontend deployed on Vercel
+* Backend deployed on Render
 
 ## Screenshots
 
-### 1. Login / Register Page
+### Login / Register Page
+
 ![Login / Register Page](screenshots/login.png)
 
-### 2. Cluster Overview Dashboard
+### Cluster Overview Dashboard
+
 ![Cluster Overview Dashboard](screenshots/dashboard.png)
 
-### 3. Deployments Page
+### Deployments Page
+
 ![Deployments Page](screenshots/deployments.png)
 
-### 4. AI Log Analyzer
+### AI Log Analyzer
+
 ![AI Log Analyzer](screenshots/ai-log-analyzer.png)
 
-### 5. Monitoring Links
+### Monitoring Links
+
 ![Monitoring Links](screenshots/monitoring.png)
 
-### 6. Grafana Dashboard
+### Grafana Dashboard
+
 ![Grafana Dashboard](screenshots/grafana-dashboard.png)
 
-### 7. Prometheus Targets
+### Prometheus Targets
+
 ![Prometheus Targets](screenshots/prometheus-targets.png)
 
-### 8. Docker Compose Running Containers
+### Docker Compose Running Containers
+
 ![Docker Compose Running Containers](screenshots/docker-compose.png)
 
-## 🏗️ Architecture
+## Architecture
 
 ```mermaid
 graph TD
-    User([User]) -->|HTTP/HTTPS| Ingress[Nginx Ingress]
-    Ingress -->|/| Frontend[React + Vite App]
-    Ingress -->|/api| Backend[FastAPI + SQLite]
-    
-    Backend <-->|API Calls| Gemini[Google Gemini AI]
-    Backend <--> DB[(SQLite Database)]
-    
-    Prometheus[Prometheus] -->|Scrapes /metrics| Backend
-    Grafana[Grafana] -->|Queries| Prometheus
-    Grafana -->|Queries| Loki[Loki]
-    Promtail[Promtail] -->|Pushes logs| Loki
+    User[User] --> Frontend[React Frontend - Vercel]
+    Frontend --> Backend[FastAPI Backend - Render]
+    Backend --> Database[(SQLite Database)]
+    Backend --> Gemini[Google Gemini AI]
+
+    Prometheus[Prometheus] --> Backend
+    Grafana[Grafana] --> Prometheus
+
+    Loki[Loki] --> Grafana
+    Promtail[Promtail] --> Loki
+
+    GitHub[GitHub Repository] --> Actions[GitHub Actions CI/CD]
+    Actions --> Docker[Docker Images]
+    Docker --> Kubernetes[Kubernetes Manifests]
 ```
 
-## 🛠️ Tech Stack
-- **Frontend**: React, Vite, TailwindCSS v4, Recharts, Lucide Icons
-- **Backend**: FastAPI, SQLAlchemy, Pydantic, Passlib, Google GenAI SDK
-- **Database**: SQLite (easy local setup)
-- **Containerization**: Docker, Docker Compose
-- **Orchestration**: Kubernetes (Minikube / Kind compatible)
-- **CI/CD**: GitHub Actions
-- **Monitoring & Logging**: Prometheus, Grafana, Loki, Promtail
+## Tech Stack
 
-## 📁 Folder Structure
-- `backend/`: FastAPI application code and requirements.
-- `frontend/`: React application using Vite and Tailwind.
-- `k8s/`: Kubernetes deployment manifests.
-- `.github/workflows/`: CI/CD action pipelines.
+### Frontend
 
-## ⚙️ Local Setup Commands
+* React
+* Vite
+* Tailwind CSS
+* Axios
+* Recharts
+* Lucide Icons
+
+### Backend
+
+* FastAPI
+* SQLAlchemy
+* Pydantic
+* JWT Authentication
+* Passlib
+* Google Gemini API
+* SQLite
+
+### DevOps and Monitoring
+
+* Docker
+* Docker Compose
+* Kubernetes
+* GitHub Actions
+* Prometheus
+* Grafana
+* Loki
+* Promtail
+* Nginx Ingress
+
+### Deployment
+
+* Vercel for frontend
+* Render for backend
+
+## Folder Structure
+
+```text
+kubewatch-ai/
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── database.py
+│   │   ├── models.py
+│   │   ├── schemas.py
+│   │   ├── auth.py
+│   │   ├── ai_service.py
+│   │   ├── metrics.py
+│   │   └── routes/
+│   ├── requirements.txt
+│   └── runtime.txt
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   └── package.json
+│
+├── grafana/
+│   ├── provisioning/
+│   └── dashboards/
+│
+├── prometheus/
+│   └── prometheus.yml
+│
+├── k8s/
+│   ├── namespace.yaml
+│   ├── backend-deployment.yaml
+│   ├── backend-service.yaml
+│   ├── frontend-deployment.yaml
+│   ├── frontend-service.yaml
+│   ├── ingress.yaml
+│   ├── prometheus.yaml
+│   ├── grafana.yaml
+│   ├── loki.yaml
+│   └── promtail.yaml
+│
+├── scripts/
+├── screenshots/
+├── docker-compose.yml
+└── README.md
+```
+
+## Local Setup
 
 ### Prerequisites
-- Node.js & npm
-- Python 3.11+
-- Docker & Docker Compose
-- (Optional) Minikube or Kind for K8s testing
 
-### 1. Environment Setup
-Create a `.env` file in the `backend/` directory:
-```
+Install the following tools:
+
+* Node.js
+* Python 3.11 or later
+* Docker Desktop
+* Docker Compose
+* Git
+
+### Backend Environment Setup
+
+Create a `.env` file inside the `backend/` folder:
+
+```env
 GEMINI_API_KEY=your_google_gemini_api_key
 ```
 
-### 2. Run with Docker Compose
-To run the full stack locally without Kubernetes:
+### Run the Full Stack with Docker Compose
+
 ```bash
 docker compose up --build -d
 docker compose ps
 ```
-- Frontend: http://localhost:80
-- Backend API: http://localhost:8000/docs
-- Prometheus: http://localhost:9090
-- Grafana: http://localhost:3001
-  - Username: `admin`
-  - Password: `admin`
-  - Dashboard: http://localhost:3001/dashboards
 
-> **Note:** If the dashboard does not appear, restart Docker Compose:
-> ```bash
-> docker compose down
-> docker compose up --build -d
-> ```
+Local URLs:
 
-### 3. Run Manually (Development)
-**Backend**:
+```text
+Frontend: http://localhost
+Backend API Docs: http://localhost:8000/docs
+Prometheus: http://localhost:9090
+Grafana: http://localhost:3001
+```
+
+Grafana local login:
+
+```text
+Username: admin
+Password: admin
+```
+
+If the Grafana dashboard does not appear, restart Docker Compose:
+
+```bash
+docker compose down
+docker compose up --build -d
+```
+
+### Run Backend Manually
+
 ```bash
 cd backend
 python -m venv venv
-# Activate venv
+venv\Scripts\activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-**Frontend**:
+Backend will run at:
+
+```text
+http://localhost:8000
+```
+
+### Run Frontend Manually
+
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-## 🌍 Live Deployment Guide
+Frontend will run at:
 
-KubeWatch AI can be deployed live for production using Render (Backend) and Vercel (Frontend).
+```text
+http://localhost:5173
+```
 
-### Live Demo URLs
-- **Frontend Live Demo**: https://kubewatch-ai-5rxo.vercel.app
-- **Backend API Docs**: https://kubewatch-ai-1.onrender.com/docs
-- **GitHub Repository**: https://github.com/Kavinvk007/kubewatch-ai
+## API Endpoints
 
-*Note: Grafana and Prometheus are available locally through Docker Compose.*
+```text
+GET  /
+GET  /health
+GET  /api/health
+POST /api/auth/register
+POST /api/auth/login
+GET  /api/dashboard
+GET  /api/deployments
+GET  /api/incidents
+POST /api/incidents
+POST /api/ai/analyze
+GET  /metrics
+```
 
-### 1. Backend Deployment (Render)
-Deploy the FastAPI backend using Render's Web Service:
-1. Connect your GitHub repository to Render.
-2. Create a new **Web Service**.
-3. Settings:
-   - **Root Directory**: ` ` (leave empty)
-   - **Environment**: `Python 3`
-   - **Build Command**: `cd backend && python -m pip install --upgrade pip setuptools wheel && pip install -r requirements.txt`
-   - **Start Command**: `cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-4. **Environment Variables**:
-   - `GEMINI_API_KEY`: Your Google Gemini API Key
-   - `FRONTEND_URL`: `https://your-frontend-project.vercel.app` (required for CORS)
+Swagger API documentation:
 
-### 2. Frontend Deployment (Vercel)
-Deploy the React Vite frontend using Vercel:
-1. Connect your GitHub repository to Vercel.
-2. Import the project and set the **Framework Preset** to `Vite`.
-3. Set the **Root Directory** to `frontend`.
-4. **Environment Variables**:
-   - `VITE_API_URL`: `https://your-backend-project.onrender.com/api`
-5. Click **Deploy**.
+```text
+https://kubewatch-ai-1.onrender.com/docs
+```
 
-### 3. Local Monitoring (Grafana & Prometheus)
-To run the monitoring stack locally while developing:
+## Deployment
+
+## Backend Deployment on Render
+
+Create a new Render Web Service and use these settings:
+
+```text
+Environment: Python 3
+Branch: main
+Root Directory: leave empty
+Build Command: cd backend && python -m pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
+Start Command: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+```
+
+Required environment variables:
+
+```text
+GEMINI_API_KEY=your_google_gemini_api_key
+FRONTEND_URL=https://your-vercel-frontend-url.vercel.app
+PYTHON_VERSION=3.11.9
+```
+
+Current backend API:
+
+```text
+https://kubewatch-ai-1.onrender.com/docs
+```
+
+## Frontend Deployment on Vercel
+
+Import the GitHub repository into Vercel and use these settings:
+
+```text
+Framework Preset: Vite
+Root Directory: frontend
+Install Command: npm install
+Build Command: npm run build
+Output Directory: dist
+```
+
+Required environment variable:
+
+```text
+VITE_API_URL=https://kubewatch-ai-1.onrender.com/api
+```
+
+Current frontend live demo:
+
+```text
+https://kubewatch-ai-5rxo.vercel.app
+```
+
+## Local Monitoring
+
+Prometheus and Grafana are available locally through Docker Compose.
+
+Start services:
+
 ```bash
 docker compose up --build -d
 docker compose ps
 ```
-Grafana will be at `http://localhost:3001` and Prometheus at `http://localhost:9090`.
 
-## ☸️ Windows Kubernetes Monitoring Setup
+Open:
 
-Step 1: Install tools:
+```text
+Grafana: http://localhost:3001
+Prometheus: http://localhost:9090
+Prometheus Targets: http://localhost:9090/targets
+```
+
+Grafana and Prometheus are intended for admin/developer monitoring. Normal users interact with the KubeWatch AI web dashboard.
+
+## Kubernetes Setup on Windows
+
+### Install kubectl and Minikube
+
 ```powershell
 winget install -e --id Kubernetes.kubectl
 winget install -e --id Kubernetes.minikube
 ```
 
-Step 2: Close PowerShell and open a new PowerShell.
+Close PowerShell and open a new PowerShell window.
 
-Step 3: Verify:
+### Verify Installation
+
 ```powershell
 kubectl version --client
 minikube version
 docker --version
 ```
 
-Step 4: Start Docker Desktop.
+### Start Docker Desktop
 
-Step 5: Run:
+Open Docker Desktop and wait until the Docker Engine is running.
+
+### Run Kubernetes Setup Scripts
+
 ```powershell
 .\scripts\setup-kubernetes-windows.ps1
 .\scripts\run-kubernetes-monitoring.ps1
 ```
 
-Step 6: Open two separate PowerShell terminals:
+### Start Port Forwarding
+
+Open two separate PowerShell terminals:
+
 ```powershell
 .\scripts\port-forward-grafana.ps1
+```
+
+```powershell
 .\scripts\port-forward-prometheus.ps1
 ```
 
-Step 7: Open:
-- Grafana: http://localhost:3001
-- Prometheus: http://localhost:9090
-- Prometheus Targets: http://localhost:9090/targets
+Open:
 
-## 🔄 CI/CD Setup Guide
-1. Push this repository to GitHub.
-2. In your GitHub repository settings, add the following secrets:
-   - `DOCKER_USERNAME`: Your Docker Hub username.
-   - `DOCKER_PASSWORD`: Your Docker Hub password/token.
-   - `KUBECONFIG`: Your base64 encoded kubeconfig file for the deployment target.
-3. Every push to the `main` branch will trigger tests, build Docker images, push to Docker Hub, and apply the manifests to your cluster.
+```text
+Grafana: http://localhost:3001
+Prometheus: http://localhost:9090
+Prometheus Targets: http://localhost:9090/targets
+```
 
-## 📝 Resume Bullets
-- Architected and deployed a scalable Kubernetes monitoring platform utilizing FastAPI, React, and Google Gemini AI, decreasing mean-time-to-resolution (MTTR) for cluster incidents through automated log analysis.
-- Engineered a robust CI/CD pipeline using GitHub Actions to automatically test, build, and deploy Dockerized microservices to a Kubernetes cluster with zero downtime.
-- Integrated a comprehensive observability stack (Prometheus, Grafana, Loki) for real-time tracking of API latencies, pod health, and error rates.
+## CI/CD
+
+The repository includes a GitHub Actions workflow for testing, building Docker images, pushing images, and applying Kubernetes manifests.
+
+Required GitHub repository secrets:
+
+```text
+DOCKER_USERNAME
+DOCKER_PASSWORD
+KUBECONFIG
+```
+
+CI/CD workflow includes:
+
+* Dependency installation
+* Backend tests
+* Docker image build
+* Docker image push
+* Kubernetes manifest deployment
+* Rollout verification
+
+## Environment Variables
+
+### Backend
+
+```text
+GEMINI_API_KEY=your_google_gemini_api_key
+FRONTEND_URL=https://your-vercel-frontend-url.vercel.app
+FRONTEND_URLS=https://preview-url-1.vercel.app,https://preview-url-2.vercel.app
+PYTHON_VERSION=3.11.9
+```
+
+### Frontend
+
+```text
+VITE_API_URL=https://your-render-backend-url.onrender.com/api
+```
+
+## Troubleshooting
+
+### Backend server not reachable
+
+Open the backend API docs:
+
+```text
+https://kubewatch-ai-1.onrender.com/docs
+```
+
+Render free services may sleep after inactivity. Wait for the service to wake up, then refresh the frontend.
+
+### CORS error
+
+Check the Render environment variable:
+
+```text
+FRONTEND_URL=https://kubewatch-ai-5rxo.vercel.app
+```
+
+Do not add a trailing slash.
+
+### Vercel build error
+
+Use these Vercel settings:
+
+```text
+Root Directory: frontend
+Install Command: npm install
+Build Command: npm run build
+Output Directory: dist
+```
+
+Do not use `cd frontend` in Vercel build commands when the Root Directory is already set to `frontend`.
+
+### Grafana or Prometheus not opening
+
+Confirm Docker containers are running:
+
+```bash
+docker compose ps
+```
+
+Open:
+
+```text
+Grafana: http://localhost:3001
+Prometheus: http://localhost:9090
+```
+
+### Docker image pull timeout
+
+Retry Docker Compose:
+
+```bash
+docker compose down
+docker compose up --build -d
+```
+
+If Prometheus or Grafana image pull fails, pull images manually:
+
+```bash
+docker pull prom/prometheus:v2.55.1
+docker pull grafana/grafana:11.3.0
+```
+
+## Resume Bullets
+
+* Built KubeWatch AI, a DevOps monitoring and AI log intelligence platform using React, FastAPI, Docker Compose, Prometheus, Grafana, Kubernetes manifests, GitHub Actions, and Gemini AI.
+* Developed an AI-powered Kubernetes log analyzer that explains deployment errors, identifies root causes, assigns severity levels, and suggests fixes.
+* Integrated Prometheus and Grafana for local observability, enabling monitoring of backend metrics, service health, and platform performance.
+* Deployed the frontend on Vercel and the backend on Render with production environment variables, CORS configuration, and API routing.
+* Created Kubernetes manifests and CI/CD workflow structure to demonstrate containerized deployment readiness.
+
+## License
+
+This project is intended for educational, portfolio, and demonstration purposes.
